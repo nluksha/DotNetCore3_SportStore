@@ -84,6 +84,8 @@ namespace SportStore.Models
                         Category = "Chess",
                         Price = 1200
                     });
+
+                context.SaveChanges();
             }
         }
     }
