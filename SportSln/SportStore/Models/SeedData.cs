@@ -47,7 +47,7 @@ namespace SportStore.Models
                     {
                         Name = "Corner Flags",
                         Description = "Give your playing field a professionsl touch",
-                        Category = "Soccet",
+                        Category = "Soccer",
                         Price = 34.95m
                     }, new Product
                     {
