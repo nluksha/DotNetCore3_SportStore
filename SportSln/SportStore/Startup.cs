@@ -33,6 +33,10 @@ namespace SportStore
             });
 
             services.AddScoped<IStoreRepository, EFStoreRepository>();
+
+            services.AddRazorPages();
+            services.AddDistributedMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,10 +48,12 @@ namespace SportStore
             }
             app.UseStatusCodePages();
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
+                /*
                 endpoints.MapGet("/favicon.ico", async (context) =>
                 {
                     context.Response.StatusCode = 404;
@@ -72,7 +78,9 @@ namespace SportStore
                     "Products/Page{page}",
                     new { Controller = "Home", action = "Index" }
                     );
+                */
                 endpoints.MapDefaultControllerRoute();
+                endpoints.MapRazorPages();
             });
 
             SeedData.EnsurePopulated(app);
