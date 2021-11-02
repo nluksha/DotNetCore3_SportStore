@@ -48,6 +48,25 @@ namespace SportStore
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapGet("/favicon.ico", async (context) =>
+                {
+                    context.Response.StatusCode = 404;
+                });
+                endpoints.MapControllerRoute(
+                    "catpage",
+                    "{category}/Page{page:int}",
+                    new { Controller = "Home", action = "Index" }
+                    );
+                endpoints.MapControllerRoute(
+                    "page",
+                    "Page{page:int}",
+                    new { Controller = "Home", action = "Index", page = 1 }
+                    );
+                endpoints.MapControllerRoute(
+                    "category",
+                    "{category}",
+                    new { Controller = "Home", action = "Index", page = 1 }
+                    );
                 endpoints.MapControllerRoute(
                     "pagination",
                     "Products/Page{page}",
