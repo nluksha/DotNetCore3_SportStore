@@ -33,6 +33,8 @@ namespace SportStore
             });
 
             services.AddScoped<IStoreRepository, EFStoreRepository>();
+            services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddRazorPages();
             services.AddDistributedMemoryCache();
