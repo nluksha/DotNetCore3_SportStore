@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SportStore.Pages.Admin
 {
+    [Authorize]
     public class IdentityUsersModel : PageModel
     {
         private UserManager<IdentityUser> userManager;
