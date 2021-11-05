@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using SportStore.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace SportStore
 {
@@ -42,6 +43,12 @@ namespace SportStore
             services.AddSession();
 
             services.AddServerSideBlazor();
+
+            services.AddDbContext<AppIdentityDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection"))
+            );
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppIdentityDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,8 +61,11 @@ namespace SportStore
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseSession();
-
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 /*
