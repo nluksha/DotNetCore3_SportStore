@@ -102,6 +102,7 @@ namespace SportStore
             });
 
             SeedData.EnsurePopulated(app);
+            IdentitySeedData.EnsurePopulated(app);
         }
     }
 }
